@@ -1,0 +1,11 @@
+<div class="file-upload">
+  <button nz-button nzType="primary" (click)="UploadFile.click()">Upload file</button>
+  <input type="file" accept="*/xlsx" style="display: none" #UploadFile (change)="change($event)">
+</div>
+
+<div class="products">
+  <div class="product" *ngFor="let product of readFileService.data">
+    <img [src]="product.url" *ngIf="product.url" alt="">
+    <h1>{{product['__EMPTY_2']}}</h1>
+  </div>
+</div>
