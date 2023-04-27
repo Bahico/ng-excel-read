@@ -3,9 +3,19 @@
   <input type="file" accept="*/xlsx" style="display: none" #UploadFile (change)="change($event)">
 </div>
 
+
 <div class="products">
-  <div class="product" *ngFor="let product of readFileService.data">
+  <div class="search">
+    <span nz-icon nzType="search" nzTheme="outline"></span>
+    <input type="text" placeholder="Search title..." [(ngModel)]="search" (ngModelChange)="searchFilter()">
+  </div>
+
+  <div class="product" *ngFor="let product of data">
     <img [src]="product.url" *ngIf="product.url" alt="">
     <h1>{{product['__EMPTY_2']}}</h1>
   </div>
+</div>
+
+<div class="pagination">
+  <nz-pagination [nzPageIndex]="1" (nzPageIndexChange)="page($event)" [nzTotal]="readFileService.filter.length"></nz-pagination>
 </div>

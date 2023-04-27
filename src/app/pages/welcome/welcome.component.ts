@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ReadFileService} from "../../read-file/read-file.service";
-import {ur_PK} from "ng-zorro-antd/i18n";
 
 @Component({
   selector: 'app-welcome',
@@ -8,15 +7,26 @@ import {ur_PK} from "ng-zorro-antd/i18n";
   styleUrls: ['./welcome.component.scss']
 })
 export class WelcomeComponent implements OnInit {
-
+  data: any[] = []
+  search = '';
   constructor(public readonly readFileService: ReadFileService) { }
 
   ngOnInit() {
   }
 
   change(event: any) {
-    this.readFileService.change(event.target.files[0]);
+    this.readFileService.change(event.target.files[0], () => {
+      this.data = this.readFileService.filter.slice(0, 12)
+    });
   }
 
-  protected readonly ur_PK = ur_PK;
+  page(event: number) {
+    const index = event.toString()+'0'
+    this.data = this.readFileService.filter.slice(+index - 10, +index + 2)
+  }
+
+  searchFilter() {
+    this.readFileService.filter = this.readFileService.data.filter(model => model['__EMPTY_2']?.toLowerCase().indexOf(this.search) > -1)
+    this.data = this.readFileService.filter.slice(0, 12)
+  }
 }
