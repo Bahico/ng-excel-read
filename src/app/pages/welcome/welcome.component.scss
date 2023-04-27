@@ -38,12 +38,25 @@
     border-radius: .5rem;
     max-height: 35vh;
     transition: .5s;
+    padding-bottom: 4px;
     img {
       width: 100%;
       max-height: 70%;
       object-fit: cover;
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
+    }
+    .price {
+      margin: 0 0 0 15px;
+      color: white;
+      padding: 4px;
+      border-radius: .1rem;
+      width: fit-content;
+      font-weight: 600;
+      background: #001529;
+    }
+    .size {
+      margin: 0 0 0 15px;
     }
     h1 {
       margin: 8px;
